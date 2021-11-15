@@ -109,6 +109,76 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
         }
 
 
+        [Fact]
+        public void Five_Seconds_Test_Success()
+        {
+            int x = 100;
+            Thread.Sleep(5000);
+            Assert.Equal(100, x);
+        }
+
+        [Fact]
+        public void Five_Seconds_Test_Failed()
+        {
+            int x = 100;
+            Thread.Sleep(5000);
+            Assert.Equal(99, x);
+        }
+
+
+        [Fact]
+        public void Three_Seconds_Test_Success()
+        {
+            int x = 100;
+            Thread.Sleep(3000);
+            Assert.Equal(100, x);
+        }
+
+        [Fact]
+        public void Three_Seconds_Test_Failed()
+        {
+            int x = 100;
+            Thread.Sleep(3000);
+            Assert.Equal(99, x);
+        }
+
+
+        [Fact]
+        public void Fifteen_Seconds_Test_Success()
+        {
+            int x = 100;
+            Thread.Sleep(3000 * 5);
+            Assert.Equal(100, x);
+        }
+
+        [Fact]
+        public void Fifteen_Seconds_Test_Failed()
+        {
+            int x = 100;
+            Thread.Sleep(3000 * 5);
+            Assert.Equal(99, x);
+        }
+
+
+
+        [Fact]
+        public void SeventyFive_Seconds_Test_Success()
+        {
+            int x = 100;
+            Thread.Sleep(3000 * 25);
+            Assert.Equal(100, x);
+        }
+
+
+        [Fact]
+        public void SeventyFive_Seconds_Test_Failed()
+        {
+            int x = 100;
+            Thread.Sleep(3000 * 25);
+            Assert.Equal(99, x);
+        }
+
+
 
         [Fact]
         public async Task DeleteByIdAsync_should_return_false_when_employee_not_found()
