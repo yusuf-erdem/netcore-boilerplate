@@ -21,7 +21,7 @@ jobs:
         uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
-          name: test-result-trx
+          name: test-result-trxaa
           path: test/**/TestResults.trx
         
         
@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
-          name: Artifact for Xunit XML files
+          name: test-result-xunit2
           path: test/**/TestResults.xml
         
       
