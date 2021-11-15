@@ -22,8 +22,11 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
       
+    - name: Build sln
+      run: dotnet build -c Release --no-cache /clp:NoSummary ./HappyCode.NetCoreBoilerplate.sln
+      
     - name: Test with TRX file
-      run: dotnet test --logger "trx;LogFileName=TestResults.trx"
+      run: dotnet test dotnet test -c Release --no-build --filter FullyQualifiedName!~LoadTests --logger "trx;LogFileName=TestResults.trx"
     
    # - name: Test with Xunit XML file
      #  run: dotnet test --logger "xunit;LogFileName=TestResults.xml" 
