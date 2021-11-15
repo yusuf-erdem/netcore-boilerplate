@@ -81,6 +81,12 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
         {
             throw new Exception("Throw exception test!!!!");
         }
+        
+        [Fact]
+        public void Error_Test()
+        {
+            Assert.Equal(1,2);
+        }
 
         [Fact]
         public async Task DeleteByIdAsync_should_return_false_when_employee_not_found()
