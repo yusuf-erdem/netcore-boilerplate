@@ -33,13 +33,13 @@ jobs:
       if: success() || failure()
       with:
         name: Artifact for TRX files
-        path: tests/**/TestResults.trx
+        path: test/**/TestResults.trx
         
     - name: Archive test results
       uses: actions/upload-artifact@v2
       if: success() || failure()
       with:
         name: Artifact for Xunit XML files
-        path: tests/**/TestResults.xml
+        path: test/**/TestResults.xml
         
       
