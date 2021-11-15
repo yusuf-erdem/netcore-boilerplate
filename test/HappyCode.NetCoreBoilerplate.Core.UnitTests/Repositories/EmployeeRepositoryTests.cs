@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -67,6 +68,18 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             emp.LastName.Should()
                 .NotBeNullOrEmpty()
                 .And.Be(theOldest.LastName);
+        }
+
+        [Fact(Skip = "Test just for skip")]
+        public void Skip_Test_Example()
+        {
+            Assert.Equal(1,1);
+        }
+
+        [Fact]
+        public void Throw_Error_Test_Example()
+        {
+            throw new Exception("Throw exception test!!!!");
         }
 
         [Fact]
