@@ -6,26 +6,9 @@ on:
   pull_request:
     branches: [ master ]
 
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
-        
-    - name: Restore dependencies
-      run: dotnet restore
-      
-    - name: Build sln
-      run: dotnet build -c Release --no-cache /clp:NoSummary ./HappyCode.NetCoreBoilerplate.sln
-      
+jobs:      
   collect-trx-test-results:
+      name: Create Artifact for TRX test results
       runs-on: ubuntu-latest
 
       steps:
@@ -42,6 +25,7 @@ jobs:
         
         
   collect-xunit-test-results:
+      name: Create Artifact for Xunit XML test results
       runs-on: ubuntu-latest
 
       steps:
