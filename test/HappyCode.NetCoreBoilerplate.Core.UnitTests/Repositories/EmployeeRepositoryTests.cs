@@ -69,6 +69,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
                 .NotBeNullOrEmpty()
                 .And.Be(theOldest.LastName);
         }
+        /*
 
         [Fact(Skip = "Test just for skip")]
         public void Skip_Test_Example()
@@ -86,7 +87,7 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
         public void Error_Test()
         {
             Assert.Equal(1,2);
-        }
+        }*/
 
         [Fact]
         public async Task DeleteByIdAsync_should_return_false_when_employee_not_found()
