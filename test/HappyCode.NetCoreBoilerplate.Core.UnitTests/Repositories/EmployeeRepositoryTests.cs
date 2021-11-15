@@ -80,17 +80,12 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
         {
             throw new Exception("Throw exception test!!!!");
         }
-        
-        [Fact]
-        public void Error_Test()
-        {
-            Assert.Equal(1,2);
-        }
 
         [Fact]
         public void Error_Test()
         {
-            Assert.Equal(1,2);
+            Assert.Equal(1, 2);
+
         }
 
         [Fact]
