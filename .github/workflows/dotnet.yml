@@ -25,24 +25,37 @@ jobs:
     - name: Build sln
       run: dotnet build -c Release --no-cache /clp:NoSummary ./HappyCode.NetCoreBoilerplate.sln
       
-    - name: Test with Xunit XML file
-      run: dotnet test --logger "trx;LogFileName=TestResults.trx" --filter FullyQualifiedName!~LoadTests /maxcpucount:1 /p:WarningLevel=0 ./HappyCode.NetCoreBoilerplate.sln
-      
-    - name: Test with Xunit XML file
-      run: dotnet test --logger "xunit;LogFileName=TestResults.xml" --filter FullyQualifiedName!~LoadTests /maxcpucount:1 /p:WarningLevel=0 ./HappyCode.NetCoreBoilerplate.sln
-      
-    - name: Archive test results for TRX files
-      uses: actions/upload-artifact@v2
-      if: success() || failure()
-      with:
-        name: Artifact for TRX files
-        path: test/**/TestResults.trx
+  collect-trx-test-results:
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@v1
+
+      - name: Test with Xunit XML file
+        run: dotnet test --logger "trx;LogFileName=TestResults.trx" --filter FullyQualifiedName!~LoadTests /maxcpucount:1 /p:WarningLevel=0 ./HappyCode.NetCoreBoilerplate.sln
+      - name: Archive test results for TRX files
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: Artifact for TRX files
+          path: test/**/TestResults.trx
         
-    - name: Archive test results for Xunit XML files
-      uses: actions/upload-artifact@v2
-      if: success() || failure()
-      with:
-        name: Artifact for Xunit XML files
-        path: test/**/TestResults.xml
+        
+  collect-xunit-test-results:
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@v1
+
+    
+      - name: Test with Xunit XML file
+        run: dotnet test --logger "xunit;LogFileName=TestResults.xml" --filter FullyQualifiedName!~LoadTests /maxcpucount:1 /p:WarningLevel=0 ./HappyCode.NetCoreBoilerplate.sln
+      
+      - name: Archive test results for Xunit XML files
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: Artifact for Xunit XML files
+          path: test/**/TestResults.xml
         
       
