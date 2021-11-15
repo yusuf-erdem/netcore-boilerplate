@@ -21,7 +21,7 @@ jobs:
         uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
-          name: test-result-trxaa
+          name: test-result-trx
           path: test/**/TestResults.trx
         
         
