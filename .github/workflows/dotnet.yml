@@ -28,12 +28,12 @@ jobs:
    # - name: Test with Xunit XML file
      #  run: dotnet test --logger "xunit;LogFileName=TestResults.xml" 
       
-    - name: Archive test results
-      uses: actions/upload-artifact@v2
-      if: success() || failure()
-      with:
-        name: Artifact for TRX files
-        path: test/**/TestResults.trx
+    #- name: Archive test results
+     # uses: actions/upload-artifact@v2
+      #if: success() || failure()
+     # with:
+      #  name: Artifact for TRX files
+       # path: test/**/TestResults.trx
         
     #- name: Archive test results
      # uses: actions/upload-artifact@v2
