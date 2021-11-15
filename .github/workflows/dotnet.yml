@@ -26,10 +26,10 @@ jobs:
       run: dotnet build -c Release --no-cache /clp:NoSummary ./HappyCode.NetCoreBoilerplate.sln
       
     - name: Test with TRX file
-      run: dotnet test -c Release --no-build --filter /maxcpucount:1 /p:WarningLevel=0  --logger "trx;LogFileName=TestResults.trx" ./HappyCode.NetCoreBoilerplate.sln
+      run: dotnet test -c Release --no-build  --logger "trx;LogFileName=TestResults.trx" ./HappyCode.NetCoreBoilerplate.sln
     
     - name: Test with Xunit XML file
-      run: dotnet test -c Release --no-build --filter /maxcpucount:1 /p:WarningLevel=0  --logger "xunit;LogFileName=TestResults.xml" ./HappyCode.NetCoreBoilerplate.sln
+      run: dotnet test -c Release --no-build --logger "xunit;LogFileName=TestResults.xml" ./HappyCode.NetCoreBoilerplate.sln
       
     - name: Archive test results
       uses: actions/upload-artifact@v2
