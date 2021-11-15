@@ -6,43 +6,40 @@ on:
   pull_request:
     branches: [ master ]
 
-jobs:
-  build:
+jobs:      
+  collect-trx-test-results:
+      name: Create Artifact for TRX test results
+      runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v1
 
-    steps:
-    - uses: actions/checkout@v2
-    
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
+      - name: Test with Xunit XML file
+        run: dotnet test --logger "trx;LogFileName=TestResults.trx" --filter FullyQualifiedName!~LoadTests /maxcpucount:1 /p:WarningLevel=0 ./HappyCode.NetCoreBoilerplate.sln
+      - name: Archive test results for TRX files
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: Artifact for TRX files
+          path: test/**/TestResults.trx
         
-    - name: Restore dependencies
-      run: dotnet restore
-      
-    - name: Build sln
-      run: dotnet build -c Release --no-cache /clp:NoSummary ./HappyCode.NetCoreBoilerplate.sln
-      
-    - name: Test with TRX file
-      run: dotnet test -c Release --no-build --filter /maxcpucount:1 /p:WarningLevel=0  --logger "trx;LogFileName=TestResults.trx" ./HappyCode.NetCoreBoilerplate.sln
-    
-    - name: Test with Xunit XML file
-      run: dotnet test -c Release --no-build --filter /maxcpucount:1 /p:WarningLevel=0  --logger "xunit;LogFileName=TestResults.xml" ./HappyCode.NetCoreBoilerplate.sln
-      
-    - name: Archive test results
-      uses: actions/upload-artifact@v2
-      if: success() || failure()
-      with:
-        name: Artifact for TRX files
-        path: test/**/TestResults.trx
         
-    - name: Archive test results
-      uses: actions/upload-artifact@v2
-      if: success() || failure()
-      with:
-        name: Artifact for Xunit XML files
-        path: test/**/TestResults.xml
+  collect-xunit-test-results:
+      name: Create Artifact for Xunit XML test results
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@v1
+
+    
+      - name: Test with Xunit XML file
+        run: dotnet test --logger "xunit;LogFileName=TestResults.xml" --filter FullyQualifiedName!~LoadTests /maxcpucount:1 /p:WarningLevel=0 ./HappyCode.NetCoreBoilerplate.sln
+      
+      - name: Archive test results for Xunit XML files
+        uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: Artifact for Xunit XML files
+          path: test/**/TestResults.xml
         
       

@@ -69,7 +69,6 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
                 .NotBeNullOrEmpty()
                 .And.Be(theOldest.LastName);
         }
-
         [Fact(Skip = "Test just for skip")]
         public void Skip_Test_Example()
         {
@@ -80,6 +79,12 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
         public void Throw_Error_Test_Example()
         {
             throw new Exception("Throw exception test!!!!");
+        }
+        
+        [Fact]
+        public void Error_Test()
+        {
+            Assert.Equal(1,2);
         }
 
         [Fact]
