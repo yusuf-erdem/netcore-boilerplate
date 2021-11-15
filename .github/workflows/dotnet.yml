@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Test with Xunit XML file
-        run: dotnet test --logger "trx;LogFileName=TestResults.trx" --filter FullyQualifiedName!~LoadTests /maxcpucount:1 /p:WarningLevel=0 ./HappyCode.NetCoreBoilerplate.sln
+        run: dotnet test --logger "trx;LogFileName=TestResults.trx" --filter /maxcpucount:1 /p:WarningLevel=0 ./HappyCode.NetCoreBoilerplate.sln
       - name: Archive test results for TRX files
         uses: actions/upload-artifact@v2
         if: success() || failure()
