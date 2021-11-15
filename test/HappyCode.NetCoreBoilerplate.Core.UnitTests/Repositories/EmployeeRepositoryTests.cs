@@ -88,6 +88,27 @@ namespace HappyCode.NetCoreBoilerplate.Core.UnitTests.Repositories
             Assert.Equal(1,2);
         }
 
+        [Fact]
+        public void NullPointer_Exception_Example()
+        {
+            object x = null;
+
+            string value = x.ToString();
+
+            Assert.NotEqual("Test", value);
+        }
+
+        [Fact]
+        public void NullPointer_Exception_Example_2()
+        {
+            object x = null;
+
+            double d = (double) x;
+
+            Assert.Equal(199.0, d);
+        }
+
+
 
         [Fact]
         public async Task DeleteByIdAsync_should_return_false_when_employee_not_found()
