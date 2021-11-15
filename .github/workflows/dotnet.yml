@@ -1,0 +1,45 @@
+name: .NET
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Test with TRX file
+      run: dotnet test --logger "trx;LogFileName=TestResults.trx"
+    
+    - name: Test with Xunit XML file
+      run: dotnet test --logger "xunit;LogFileName=TestResults.xml" 
+      
+    - name: Archive test results
+      uses: actions/upload-artifact@v2
+      if: success() || failure()
+      with:
+        name: Artifact for TRX files
+        path: tests/**/TestResults.trx
+        
+    - name: Archive test results
+      uses: actions/upload-artifact@v2
+      if: success() || failure()
+      with:
+        name: Artifact for Xunit XML files
+        path: tests/**/TestResults.xml
+        
+      
