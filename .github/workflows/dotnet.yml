@@ -20,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
-          name: Artifact for TRX files
+          name: test-result-trx
           path: test/**/TestResults.trx
         
         
